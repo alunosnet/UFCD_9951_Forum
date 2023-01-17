@@ -2,6 +2,7 @@ from flask import Flask, render_template,request,redirect
 from basedados import *
 import utilizador
 import tema
+import mensagem
 
 #Criar a bd e as tabelas
 tabela_utilizador="create table if not exists utilizador(id integer primary key autoincrement, nome text, email text, palavra_passe text, estado integer)"
@@ -20,6 +21,11 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+#rotas da mensagem
+@app.route('/forum')
+def forum_index():
+    return mensagem.mensagem_listar()
+
 #rotas do tema
 @app.route('/tema/adicionar',methods=["GET","POST"])
 def tema_adicionar():
@@ -32,6 +38,18 @@ def tema_listar():
 @app.route('/tema/apagar',methods=["POST"])
 def tema_apagar():
     return tema.tema_apagar()
+
+@app.route('/tema/apagar_confirmado',methods=["POST"])
+def tema_apagar_confirmado():
+    return tema.tema_apagar_confirmado()
+
+@app.route('/tema/editar',methods=["POST"])
+def tema_editar():
+    return tema.tema_editar()
+
+@app.route('/tema/editar_confirmado',methods=["POST"])
+def tema_editar_confirmado():
+    return tema.tema_editar_confirmado()
 
 #Rotas do utilizador
 @app.route('/utilizador/registar',methods=["GET","POST"])
