@@ -22,7 +22,15 @@ def index():
     return render_template('index.html')
 
 #rotas da mensagem
-@app.route('/forum')
+@app.route("/mensagem/guardar_resposta",methods=["POST"])
+def mensagem_guardar_resposta():
+    return mensagem.mensagem_guardar_resposta()
+    
+@app.route("/mensagem/responder",methods=["POST"])
+def mensagem_responder():
+    return mensagem.mensagem_responder()
+
+@app.route('/forum',methods=["GET","POST"])
 def forum_index():
     return mensagem.mensagem_listar()
 
