@@ -22,6 +22,15 @@ def index():
     return render_template('index.html')
 
 #rotas da mensagem
+@app.route("/mensagem/apagar",methods=["POST"])
+def mensagem_apagar():
+    return mensagem.mensagem_apagar()
+
+@app.route("/mensagem/apagar_confirmado",methods=["POST"])
+def mensagem_apagar_confirmado():
+    return mensagem.mensagem_apagar_confirmado()
+
+
 @app.route("/mensagem/guardar_resposta",methods=["POST"])
 def mensagem_guardar_resposta():
     return mensagem.mensagem_guardar_resposta()
